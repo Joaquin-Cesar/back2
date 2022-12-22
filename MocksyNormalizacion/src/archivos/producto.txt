@@ -1,0 +1,38 @@
+[
+  {
+    "nombre": "Coca Cola Zero (500ml)",
+    "precio": 120,
+    "imagen": "https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_google-64.png",
+    "id": 1
+  },
+  {
+    "nombre": "Jamón-Bacon Sin Gluten",
+    "precio": 450,
+    "imagen": "https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_gmail-64.png",
+    "id": 2
+  },
+  {
+    "nombre": "Fanta (500ml)",
+    "precio": 115,
+    "imagen": "https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_sketch_app-64.png",
+    "id": 3
+  },
+  {
+    "id": 4,
+    "nombre": "Joaquin",
+    "precio": "60",
+    "imagen": "https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_android-64.png"
+  },
+  {
+    "id": 5,
+    "nombre": "Joaquin",
+    "precio": "60",
+    "imagen": "https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_android-64.png"
+  },
+  {
+    "id": 6,
+    "nombre": "Joaquin",
+    "precio": "60",
+    "imagen": "https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_android-64.png"
+  }
+]
