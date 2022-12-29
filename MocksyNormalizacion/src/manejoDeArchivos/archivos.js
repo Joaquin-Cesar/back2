@@ -1,5 +1,4 @@
-
-/*const fs = require('fs')
+import { promises as fs } from 'fs'
 
 
 class Producto {
@@ -97,4 +96,4 @@ deleteAll = async (desicion)=>{
 
 
 
-module.exports= Producto;*/
+export default Producto

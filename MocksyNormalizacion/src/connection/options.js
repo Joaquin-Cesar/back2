@@ -1,4 +1,6 @@
-const path = require("path")
+import path from "path";
+const{pathname: filename} = new URL('../db/mydb.sqlite', import.meta.url)
+ 
 const options = {
     mysql: {
       client: 'mysql',
@@ -13,10 +15,11 @@ const options = {
     sqlite3: {
       client: 'sqlite3',
       connection: {
-        filename: path.join(__dirname, '../db/mydb.sqlite')
+  
+        filename: filename
       },
       useNullAsDefault: true
     }
   };
   
-  module.exports = options;
+  export default options;

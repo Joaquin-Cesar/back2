@@ -1,3 +1,6 @@
+import { normalize,denormalize } from "normalizr"
+
+
 const socket = io()
 
 const renderProducto  =  (producto)=>{
@@ -57,7 +60,7 @@ return false
 }
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
 function render(data) {
     const html = data.map((elem, index) => {
       return(`<div class="contenedorMensajes" >
@@ -67,7 +70,19 @@ function render(data) {
     document.getElementById('messages').innerHTML = html;
   }
   
-  socket.on('messages', function(data) { render(data); });
+  const autorSchema = new normalize.schema.Entity("autor",{},{idAttribute: "email"})
+const mensajeSchema = new normalize.schema.Entity("mensaje",{
+  autor:autorSchema
+})
+
+const mensajesSchema = new normalize.schema.Entity("mensajes",{
+  mensajes: mensajeSchema
+})
+  
+  socket.on('messages', function(data) {
+    const mensajeDesnormalisado=normalize.denormalize(data.result,mensajeSchema,data.entity)
+    console.log(mensajeDesnormalisado)
+    render( "mensajeDesnormalisado",mensajeDesnormalisado); });
   
   function addMessage(e) {
     const mensaje = {autor:{

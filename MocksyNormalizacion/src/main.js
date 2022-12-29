@@ -1,32 +1,35 @@
-const express = require("express")
-const fs = require('fs')
- const aplicacion = express();
- const moment = require('moment');
+import  express  from "express";
+const aplicacion = express()
+import moment from "moment";
+
  const PORT = 8080
  const carpetaPublica ="./public"
- const Producto = require('./manejoDeArchivos/archivosSql.js')
- const options = require('./connection/options.js')
- const ContenedorMemoria = require("./manejoDeArchivos/archivosMemorias.js")
- const faker= require("faker")
+
+ import options from "./connection/options.js";
+ import ContenedorMemoria from "./manejoDeArchivos/archivosMemorias.js";
+import faker from "faker";
  faker.locale ="es"
+import { normalize, schema } from "normalizr";
 
  const producto = new ContenedorMemoria()
  const mensajes = new ContenedorMemoria()
 
- const {Server: HttpServer} = require("http")
- const {Server: IOServer} = require("socket.io")
+ import { Server as HttpServer } from 'http'
+import { Server as Socket } from 'socket.io'
+
 
  const httpServer = new HttpServer(aplicacion)
- const io = new IOServer(httpServer)
- 
-const bodyParser = require("body-parser");
+ const io = new Socket(httpServer)
+
+ import bodyParser from "body-parser";
+
 aplicacion.use(bodyParser.urlencoded({ extended: true, limit: "50mb"}));
 aplicacion.use(bodyParser.json({ limit: "50mb"}));
  
 aplicacion.use(express.static(carpetaPublica))
 
+import knex from "knex";
 
-const knex = require('knex');
 
  const connectionMsql =  knex(options.mysql) 
  const connectionSlit3 = knex(options.sqlite3)  
@@ -158,7 +161,7 @@ io.on("connection", async (socket)=>{
 
 
 
- const listaMensajes = await mensajes. listarAll()
+ const listaMensajes = mensajeNormalizado()
  socket.emit('messages', listaMensajes);
 
  //Evento para recibir nuevos mensajes
@@ -166,8 +169,22 @@ io.on("connection", async (socket)=>{
   console.log("data",data)
    data.time = moment(new Date()).format('DD/MM/YYYY hh:mm:ss');
    await mensajes.guardar(data);
-   const listaMensajes = await mensajes. listarAll()
+   const listaMensajes = mensajeNormalizado()
    io.sockets.emit('messages', listaMensajes);
  });
 })
 
+
+const autorSchema = new schema.Entity("autor",{},{idAttribute: "email"})
+const mensajeSchema = new schema.Entity("mensaje",{
+  autor:autorSchema
+})
+
+const mensajesSchema = new schema.Entity("mensajes",{
+  mensajes: mensajeSchema
+})
+
+async function mensajeNormalizado(){
+  const arregloMensaje = await producto.listarAll()
+  return normalize(arrayMensajes,mensajesSchema)
+}

@@ -1,4 +1,5 @@
-const knex = require('knex');
+import knex from 'knex';
+
 
 class Producto {
   constructor(options, table) {
@@ -28,4 +29,4 @@ class Producto {
   }
 }
 
-module.exports = Producto;
+export default Producto
