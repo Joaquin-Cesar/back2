@@ -31,13 +31,25 @@ authWebRouter.get('/', (req, res) => {
 
 authWebRouter.get('/login', (req, res) => {
    //Si ya existe una sesion, redirigir al home
-   console.log("hola:",req.session.nombre) 
-   if(req.session.nombre){
- console.log("nombre login get:",req.session.nombre)
- res.sendFile(process.cwd() + '/views/login.html')
+   res.sendFile(process.cwd() + '/views/login.html')
+   const login = req.session.nombre
+   console.log("hola:",login );
+   if(login ){
+    console.log("nombre login get:",login );
+     res.redirect('/home')
     }
   
 })
+
+authWebRouter.post('/login', (req, res) => {
+   
+  //Guardar el nombre que viene en el body en la sesion.
+  console.log("chau:",req.session.nombre);
+  req.session.nombre = req.body.nombre
+  console.log("nombre login post:",req.session.nombre);
+  res.redirect('/home')
+})
+
 
 authWebRouter.get('/logout', (req, res) => {
     //Obtener el nombre del usuario
@@ -46,9 +58,9 @@ authWebRouter.get('/logout', (req, res) => {
     //Eliminar la sesion con destroy
     req.session.destroy((err) => {
         if (!err) {
-             res.render(process.cwd() + '/views/pages/logout.ejs', { nombre: nombre })
+          return   res.render(process.cwd() + '/views/pages/logout.ejs', { nombre: nombre })
           }
-          res.status(500).json({
+          return  res.status(500).json({
             error: 'Ha ocurrido un error durante el logout'
           });
        
@@ -58,14 +70,6 @@ authWebRouter.get('/logout', (req, res) => {
 })
 
 
-authWebRouter.post('/login', (req, res) => {
-   
-    //Guardar el nombre que viene en el body en la sesion.
-    console.log("chau:",req.session.nombre);
-    req.session.nombre = req.body
-    console.log("nombre login post:",req.session.nombre);
-    res.redirect('/home')
-})
 
 
 

@@ -6,10 +6,11 @@ const productosWebRouter = new Router()
 productosWebRouter.get('/home', (req, res) => {
     //Cambiar el nombre de usuario
     const home= req.session.nombre
+    console.log(home)
     if (!home) {
-      return  res.render("no puede usar home sein antes registrarse")
+        return   res.redirect('/login')
     }
-    res.render(process.cwd() + '/views/pages/home.ejs', { nombre: 'usuario' })
+    res.render(process.cwd() + '/views/pages/home.ejs', { nombre: home})
 })
 
 productosWebRouter.get('/productos-vista-test', (req, res) => {
