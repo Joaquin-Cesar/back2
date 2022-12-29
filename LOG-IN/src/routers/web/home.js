@@ -7,7 +7,7 @@ productosWebRouter.get('/home', (req, res) => {
     //Cambiar el nombre de usuario
     const home= req.session.nombre
     if (!home) {
-        res.render("no puede usar home sein antes registrarse")
+      return  res.render("no puede usar home sein antes registrarse")
     }
     res.render(process.cwd() + '/views/pages/home.ejs', { nombre: 'usuario' })
 })
