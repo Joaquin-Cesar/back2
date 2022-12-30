@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo/estilo.css">
+    <script src="socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Formularios</h1>
+  
+  <div>
+    <h2>Productos</h2>
+    <form onsubmit="return addProduct(this)">
+       <label for="nombre">Nombre:</label><br>
+      <input type="text"  required="required" pattern="^[A-Za-z]+$" id="nombre" name="nombre"><br>
+      <label for="imagen">Imagen:</label><br>
+      <input type="url"  required="required"  name="imagen" id="imagen"><br>
+      <label for="precio">Precio:</label><br>
+      <input type="number"  required="required"  name="precio" id="precio"><br>
+      <input type="submit" value="Enviar">
+    </form>
+  </div>
+ <br>
+
+    <section>
+        <h1 class="titulo">Productos</h1>
+
+        <div id='contenedorProductos'>
+     
+               <!-- <div id='contenedorProducto'>
+            
+                </div>-->
+             
+        </div>
+    </section>
+  <section class="contenedorMensajes">
+    <h2>Centro de Mensajes</h2>
+    <form onsubmit="return addMessage(this)">
+      <input type="email" id="email" placeholder="Tu Email" >
+      <input type="text" id="texto" placeholder="Cuéntanos algo...">
+      <input type="submit" value="Enviar">
+    </form>
+    <div id="messages"></div>
+  </section>
+       
+  
+</body>
+</html>

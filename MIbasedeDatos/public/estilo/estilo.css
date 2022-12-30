@@ -1,0 +1,46 @@
+
+.titulo{
+   
+    text-align: center;
+}
+#contenedorProductos{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+}
+#contenedorProducto{
+    margin: 20px;
+    border: solid black;
+    text-align: center;
+    padding: 5px;
+    height: 170px;
+    width: 120px;
+}
+p{
+    border-top: solid black 2px;
+}
+.enlace{
+ text-align: center;
+ border: solid black 2px;
+ margin-left: 550px;
+ margin-right: 550px;
+ background-color: bisque;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.email{
+    color: blue
+}
+
+.texto{
+    color: green
+}
+
+.contenedorMensajes{
+    color: brown
+}
+
