@@ -13,6 +13,3 @@ process.on('message', cant => {
 })
 
 process.send('listo')
-
-const hola ="hola"
-export default hola

@@ -1,0 +1,1 @@
+2023/01/25 20:53:18 [error] 4576#7324: *1 CreateFile() "C:\Users\Usuario\Desktop\back2\servidorconbalanca\nginx-1.22.1/html/favicon.ico" failed (2: El sistema no puede encontrar el archivo especificado), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
